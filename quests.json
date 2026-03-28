@@ -1,0 +1,844 @@
+{
+  "tiers": [
+    {
+      "id": "TIER1",
+      "name": "Training / Basic Combat",
+      "nodes": [
+        {
+          "id": "q1_takeoff",
+          "name": "First Sortie",
+          "description": "Reach safe altitude, maintain control, and survive the opening patrol window.",
+          "unlock_requirements": {
+            "completed_nodes": [],
+            "min_stars": 0
+          },
+          "next_nodes": [
+            "q1_dogfight_intro",
+            "q1_intercept_drill"
+          ],
+          "difficulty_scale": 0.9,
+          "mission": {
+            "name": "First Sortie",
+            "description": "Training run over friendly terrain. Maintain altitude discipline and survive.",
+            "enemy_spawn_count": 2,
+            "objectives": [
+              {
+                "type": "reach_altitude",
+                "target": 1200,
+                "description": "Climb to 1200m"
+              },
+              {
+                "type": "survive",
+                "duration": 90,
+                "description": "Stay airborne for 90 seconds"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "reach_altitude",
+                "target": 1800,
+                "description": "Bonus: climb to 1800m"
+              }
+            ],
+            "fail_conditions": [
+              "Crash aircraft",
+              "Pilot health reaches zero"
+            ],
+            "bonus_time": 110,
+            "rewards": {
+              "upgrades": {
+                "radar_quality": 1
+              },
+              "cosmetics": [
+                "rookie_marking"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q1_dogfight_intro",
+          "name": "Gun Camera",
+          "description": "Destroy hostiles at close range while maintaining situational awareness.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q1_takeoff"
+            ],
+            "min_stars": 0
+          },
+          "next_nodes": [
+            "q2_border_intercept"
+          ],
+          "difficulty_scale": 1.0,
+          "mission": {
+            "name": "Gun Camera",
+            "description": "Engage two enemy scouts in a controlled combat zone.",
+            "enemy_spawn_count": 3,
+            "objectives": [
+              {
+                "type": "destroy",
+                "amount": 2,
+                "description": "Destroy 2 enemy aircraft"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "survive",
+                "duration": 120,
+                "description": "Bonus: avoid taking critical damage for 2 minutes"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed"
+            ],
+            "bonus_time": 100,
+            "rewards": {
+              "upgrades": {
+                "missile_capacity": 2
+              }
+            }
+          }
+        },
+        {
+          "id": "q1_intercept_drill",
+          "name": "Intercept Drill",
+          "description": "Practice intercept geometry and timing before enemies reach the base.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q1_takeoff"
+            ],
+            "min_stars": 0
+          },
+          "next_nodes": [
+            "q2_border_intercept"
+          ],
+          "difficulty_scale": 1.05,
+          "mission": {
+            "name": "Intercept Drill",
+            "description": "Destroy incoming aircraft quickly before they break formation.",
+            "enemy_spawn_count": 4,
+            "objectives": [
+              {
+                "type": "destroy_in_time",
+                "amount": 3,
+                "time_limit": 150,
+                "description": "Destroy 3 enemies within 150 seconds"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "destroy",
+                "amount": 4,
+                "description": "Bonus: destroy all hostiles"
+              }
+            ],
+            "fail_conditions": [
+              "Time limit exceeded"
+            ],
+            "bonus_time": 120,
+            "rewards": {
+              "upgrades": {
+                "flare_capacity": 4
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "TIER2",
+      "name": "Intercept / Defense",
+      "nodes": [
+        {
+          "id": "q2_border_intercept",
+          "name": "Border Screen",
+          "description": "Defend the border corridor from coordinated enemy flights.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q1_dogfight_intro",
+              "q1_intercept_drill"
+            ],
+            "min_stars": 3
+          },
+          "next_nodes": [
+            "q2_base_shield"
+          ],
+          "difficulty_scale": 1.2,
+          "mission": {
+            "name": "Border Screen",
+            "description": "Intercept hostile wave before they threaten friendly base infrastructure.",
+            "enemy_spawn_count": 5,
+            "objectives": [
+              {
+                "type": "destroy",
+                "amount": 4,
+                "description": "Destroy 4 enemy aircraft"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "destroy_in_time",
+                "amount": 4,
+                "time_limit": 180,
+                "description": "Bonus: complete under 180 seconds"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed"
+            ],
+            "bonus_time": 170,
+            "rewards": {
+              "upgrades": {
+                "radar_quality": 1
+              }
+            }
+          }
+        },
+        {
+          "id": "q2_base_shield",
+          "name": "Base Shield",
+          "description": "Hold the line and prevent enemy strike packages from overwhelming defenses.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q2_border_intercept"
+            ],
+            "min_stars": 4
+          },
+          "next_nodes": [
+            "q3_precision_strike"
+          ],
+          "difficulty_scale": 1.3,
+          "mission": {
+            "name": "Base Shield",
+            "description": "Sustain defensive operations while reducing attacking force strength.",
+            "enemy_spawn_count": 6,
+            "objectives": [
+              {
+                "type": "survive",
+                "duration": 180,
+                "description": "Survive 3 minutes"
+              },
+              {
+                "type": "destroy",
+                "amount": 3,
+                "description": "Destroy 3 attackers"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "destroy",
+                "amount": 5,
+                "description": "Bonus: destroy 5 attackers"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed",
+              "Unable to survive full defense window"
+            ],
+            "bonus_time": 200,
+            "rewards": {
+              "aircraft_unlocks": [
+                "xwing"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "TIER3",
+      "name": "Strike / Escort",
+      "nodes": [
+        {
+          "id": "q3_precision_strike",
+          "name": "Deep Strike",
+          "description": "Penetrate enemy airspace and neutralize the fortified target area.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q2_base_shield"
+            ],
+            "min_stars": 6
+          },
+          "next_nodes": [
+            "q3_escort_exit",
+            "q3_naval_strike",
+            "q3_air_superiority"
+          ],
+          "difficulty_scale": 1.45,
+          "mission": {
+            "name": "Deep Strike",
+            "description": "Eliminate enemy base while under fighter pressure.",
+            "enemy_spawn_count": 7,
+            "objectives": [
+              {
+                "type": "destroy_base",
+                "description": "Destroy enemy base"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "destroy",
+                "amount": 3,
+                "description": "Bonus: destroy 3 escorts"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed",
+              "Base survives mission window"
+            ],
+            "bonus_time": 210,
+            "rewards": {
+              "currency": 200,
+              "upgrades": {
+                "missile_tracking": 1
+              },
+              "cosmetics": [
+                "strike_stripes"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q3_naval_strike",
+          "name": "Naval Strike",
+          "description": "Target enemy naval assets in coastal waters.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q3_precision_strike"
+            ],
+            "min_stars": 8
+          },
+          "next_nodes": [
+            "q4_combined_arms",
+            "q4_fleet_defense"
+          ],
+          "difficulty_scale": 1.6,
+          "mission": {
+            "name": "Naval Strike",
+            "description": "Destroy enemy destroyer and escort vessels.",
+            "enemy_spawn_count": 8,
+            "objectives": [
+              {
+                "type": "destroy_ships",
+                "amount": 2,
+                "description": "Destroy 2 enemy ships"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "destroy",
+                "amount": 4,
+                "description": "Bonus: destroy all naval escorts"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed"
+            ],
+            "bonus_time": 240,
+            "rewards": {
+              "currency": 300,
+              "upgrades": {
+                "radar_quality": 2
+              }
+            }
+          }
+        },
+        {
+          "id": "q3_air_superiority",
+          "name": "Air Superiority",
+          "description": "Establish dominance in contested airspace.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q3_precision_strike"
+            ],
+            "min_stars": 7
+          },
+          "next_nodes": [
+            "q4_wild_weasel",
+            "q4_bomber_escort"
+          ],
+          "difficulty_scale": 1.5,
+          "mission": {
+            "name": "Air Superiority",
+            "description": "Clear enemy fighters from the area.",
+            "enemy_spawn_count": 9,
+            "objectives": [
+              {
+                "type": "destroy",
+                "amount": 7,
+                "description": "Destroy 7 enemy fighters"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "survive",
+                "duration": 180,
+                "description": "Bonus: maintain air superiority for 3 minutes"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed"
+            ],
+            "bonus_time": 200,
+            "rewards": {
+              "currency": 250,
+              "upgrades": {
+                "missile_capacity": 4
+              }
+            }
+          }
+        },
+        {
+          "id": "q3_escort_exit",
+          "name": "Escort Exit",
+          "description": "Cover retreat route while holding altitude and suppressing interceptors.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q3_precision_strike"
+            ],
+            "min_stars": 7
+          },
+          "next_nodes": [
+            "q4_elite_gauntlet",
+            "q4_rescue_mission"
+          ],
+          "difficulty_scale": 1.55,
+          "mission": {
+            "name": "Escort Exit",
+            "description": "Defeat interceptors and survive exfiltration corridor.",
+            "enemy_spawn_count": 8,
+            "objectives": [
+              {
+                "type": "survive",
+                "duration": 220,
+                "description": "Survive until escort exits"
+              },
+              {
+                "type": "destroy",
+                "amount": 4,
+                "description": "Destroy 4 interceptors"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "reach_altitude",
+                "target": 2200,
+                "description": "Bonus: maintain high-cover altitude"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed"
+            ],
+            "bonus_time": 200,
+            "rewards": {
+              "currency": 200,
+              "upgrades": {
+                "flare_capacity": 6
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "TIER4",
+      "name": "Specialized Operations",
+      "nodes": [
+        {
+          "id": "q4_combined_arms",
+          "name": "Combined Arms",
+          "description": "Coordinate with ground and naval forces in multi-domain operation.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q3_naval_strike"
+            ],
+            "min_stars": 10
+          },
+          "next_nodes": [
+            "q5_final_assault"
+          ],
+          "difficulty_scale": 1.8,
+          "mission": {
+            "name": "Combined Arms",
+            "description": "Destroy fortified position with allied support.",
+            "enemy_spawn_count": 10,
+            "objectives": [
+              {
+                "type": "destroy_base",
+                "description": "Destroy enemy fortress"
+              },
+              {
+                "type": "protect_assets",
+                "amount": 2,
+                "description": "Protect 2 allied vehicles"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "destroy",
+                "amount": 5,
+                "description": "Bonus: destroy all defenders"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed",
+              "Allied assets destroyed"
+            ],
+            "bonus_time": 250,
+            "rewards": {
+              "currency": 400,
+              "aircraft_unlocks": [
+                "ac130"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q4_fleet_defense",
+          "name": "Fleet Defense",
+          "description": "Defend allied fleet from aerial and submarine threats.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q3_naval_strike"
+            ],
+            "min_stars": 9
+          },
+          "next_nodes": [
+            "q5_final_assault"
+          ],
+          "difficulty_scale": 1.7,
+          "mission": {
+            "name": "Fleet Defense",
+            "description": "Protect carrier group from coordinated attack.",
+            "enemy_spawn_count": 11,
+            "objectives": [
+              {
+                "type": "protect_ships",
+                "amount": 3,
+                "description": "Protect 3 allied ships"
+              },
+              {
+                "type": "destroy",
+                "amount": 6,
+                "description": "Destroy 6 attackers"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "survive",
+                "duration": 300,
+                "description": "Bonus: survive full engagement"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed",
+              "Carrier destroyed"
+            ],
+            "bonus_time": 280,
+            "rewards": {
+              "currency": 350,
+              "upgrades": {
+                "radar_quality": 3
+              }
+            }
+          }
+        },
+        {
+          "id": "q4_wild_weasel",
+          "name": "Wild Weasel",
+          "description": "Suppress enemy air defenses to enable follow-on strikes.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q3_air_superiority"
+            ],
+            "min_stars": 11
+          },
+          "next_nodes": [
+            "q5_final_assault"
+          ],
+          "difficulty_scale": 1.9,
+          "mission": {
+            "name": "Wild Weasel",
+            "description": "Destroy SAM sites and radar installations.",
+            "enemy_spawn_count": 8,
+            "objectives": [
+              {
+                "type": "destroy_sams",
+                "amount": 4,
+                "description": "Destroy 4 SAM sites"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "destroy",
+                "amount": 2,
+                "description": "Bonus: destroy radar stations"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed"
+            ],
+            "bonus_time": 220,
+            "rewards": {
+              "currency": 450,
+              "upgrades": {
+                "missile_capacity": 6
+              }
+            }
+          }
+        },
+        {
+          "id": "q4_bomber_escort",
+          "name": "Bomber Escort",
+          "description": "Protect strategic bombers during deep penetration mission.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q3_air_superiority"
+            ],
+            "min_stars": 10
+          },
+          "next_nodes": [
+            "q5_final_assault"
+          ],
+          "difficulty_scale": 1.75,
+          "mission": {
+            "name": "Bomber Escort",
+            "description": "Escort B-52s to target and back.",
+            "enemy_spawn_count": 12,
+            "objectives": [
+              {
+                "type": "protect_bombers",
+                "amount": 2,
+                "description": "Keep 2 bombers alive"
+              },
+              {
+                "type": "destroy",
+                "amount": 8,
+                "description": "Destroy 8 interceptors"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "reach_altitude",
+                "target": 2500,
+                "description": "Bonus: maintain escort altitude"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed",
+              "All bombers destroyed"
+            ],
+            "bonus_time": 260,
+            "rewards": {
+              "currency": 400,
+              "aircraft_unlocks": [
+                "tinker"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q4_elite_gauntlet",
+          "name": "Elite Gauntlet",
+          "description": "High-threat mixed package mission with strict timing and attrition pressure.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q3_escort_exit"
+            ],
+            "min_stars": 9
+          },
+          "next_nodes": [
+            "q5_final_assault"
+          ],
+          "difficulty_scale": 1.75,
+          "mission": {
+            "name": "Elite Gauntlet",
+            "description": "Destroy enemy assets and survive elite response.",
+            "enemy_spawn_count": 10,
+            "objectives": [
+              {
+                "type": "destroy_base",
+                "description": "Destroy enemy base"
+              },
+              {
+                "type": "destroy",
+                "amount": 6,
+                "description": "Destroy 6 elite aircraft"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "destroy_in_time",
+                "amount": 6,
+                "time_limit": 240,
+                "description": "Bonus: clear elite flight quickly"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed",
+              "Unable to clear objectives"
+            ],
+            "bonus_time": 230,
+            "rewards": {
+              "currency": 300,
+              "aircraft_unlocks": [
+                "ac130"
+              ],
+              "cosmetics": [
+                "elite_black"
+              ]
+            }
+          }
+        },
+        {
+          "id": "q4_rescue_mission",
+          "name": "Rescue Mission",
+          "description": "Extract downed pilot from hostile territory.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q3_escort_exit"
+            ],
+            "min_stars": 8
+          },
+          "next_nodes": [
+            "q5_final_assault"
+          ],
+          "difficulty_scale": 1.6,
+          "mission": {
+            "name": "Rescue Mission",
+            "description": "Land, pick up pilot, and exfiltrate.",
+            "enemy_spawn_count": 7,
+            "objectives": [
+              {
+                "type": "rescue_pilot",
+                "description": "Extract downed pilot"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "destroy",
+                "amount": 4,
+                "description": "Bonus: destroy pursuing enemies"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed",
+              "Pilot not rescued"
+            ],
+            "bonus_time": 180,
+            "rewards": {
+              "currency": 350,
+              "upgrades": {
+                "flare_capacity": 8
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "TIER5",
+      "name": "Final Operations",
+      "nodes": [
+        {
+          "id": "q5_final_assault",
+          "name": "Final Assault",
+          "description": "All-out assault on enemy command and control.",
+          "unlock_requirements": {
+            "completed_nodes": [
+              "q4_combined_arms",
+              "q4_fleet_defense",
+              "q4_wild_weasel",
+              "q4_bomber_escort",
+              "q4_elite_gauntlet",
+              "q4_rescue_mission"
+            ],
+            "min_stars": 15
+          },
+          "next_nodes": [],
+          "difficulty_scale": 2.0,
+          "mission": {
+            "name": "Final Assault",
+            "description": "Destroy enemy headquarters and end the conflict.",
+            "enemy_spawn_count": 15,
+            "objectives": [
+              {
+                "type": "destroy_hq",
+                "description": "Destroy enemy headquarters"
+              },
+              {
+                "type": "destroy",
+                "amount": 10,
+                "description": "Destroy 10 defending aircraft"
+              }
+            ],
+            "optional_objectives": [
+              {
+                "type": "survive",
+                "duration": 300,
+                "description": "Bonus: survive the entire battle"
+              }
+            ],
+            "fail_conditions": [
+              "Aircraft destroyed",
+              "HQ survives"
+            ],
+            "bonus_time": 300,
+            "rewards": {
+              "currency": 1000,
+              "cosmetics": [
+                "victory_wings"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "challenges": [
+    {
+      "id": "c_time_attack",
+      "name": "Time Attack",
+      "description": "Destroy as many enemies as possible under strict time pressure.",
+      "unlock_requirements": {
+        "min_stars": 2
+      },
+      "difficulty_scale": 1.25,
+      "mission": {
+        "name": "Challenge - Time Attack",
+        "description": "Rapid elimination scenario with compressed lock windows.",
+        "enemy_spawn_count": 6,
+        "objectives": [
+          {
+            "type": "destroy_in_time",
+            "amount": 5,
+            "time_limit": 180,
+            "description": "Destroy 5 enemies in 180 seconds"
+          }
+        ],
+        "bonus_time": 150
+      }
+    },
+    {
+      "id": "c_survival",
+      "name": "Survival Stack",
+      "description": "Stay alive through escalating enemy pressure.",
+      "unlock_requirements": {
+        "min_stars": 4
+      },
+      "difficulty_scale": 1.5,
+      "mission": {
+        "name": "Challenge - Survival Stack",
+        "description": "High-pressure endurance challenge.",
+        "enemy_spawn_count": 9,
+        "objectives": [
+          {
+            "type": "survive",
+            "duration": 240,
+            "description": "Survive for 4 minutes"
+          }
+        ],
+        "bonus_time": 220
+      }
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "missions": [
+    {
+      "id": "op_takeoff",
+      "name": "Operation Takeoff",
+      "description": "Climb and prove you're combat-ready.",
+      "objectives": [
+        { "type": "reach_altitude", "description": "Reach 1000 meters altitude", "target": 1000 },
+        { "type": "survive", "description": "Maintain flight for 30 seconds", "duration": 30 }
+      ]
+    },
+    {
+      "id": "op_dogfight",
+      "name": "First Blood",
+      "description": "Engage and destroy hostile aircraft.",
+      "objectives": [
+        { "type": "destroy", "description": "Destroy 3 enemy aircraft", "amount": 3, "target_tag": "enemy_plane" }
+      ]
+    },
+    {
+      "id": "op_intercept",
+      "name": "High Altitude Intercept",
+      "description": "Climb fast and intercept incoming threat.",
+      "objectives": [
+        { "type": "reach_altitude", "description": "Climb to 3000 meters", "target": 3000 },
+        { "type": "destroy", "description": "Destroy the interceptor", "amount": 1, "target_tag": "boss" }
+      ]
+    },
+    {
+      "id": "op_endurance",
+      "name": "Iron Wings",
+      "description": "Hold your position under pressure.",
+      "objectives": [
+        { "type": "survive", "description": "Survive for 3 minutes", "duration": 180 }
+      ]
+    },
+    {
+      "id": "op_sky_sweeper",
+      "name": "Sky Sweeper",
+      "description": "Clear hostile aircraft from the sector.",
+      "objectives": [
+        { "type": "destroy", "description": "Destroy 5 enemy aircraft", "amount": 5, "target_tag": "enemy_plane" }
+      ]
+    },
+    {
+      "id": "op_climb_and_fight",
+      "name": "Climb and Conquer",
+      "description": "Gain altitude advantage and eliminate threats.",
+      "objectives": [
+        { "type": "reach_altitude", "description": "Reach 2500 meters altitude", "target": 2500 },
+        { "type": "destroy", "description": "Destroy 2 enemy aircraft", "amount": 2, "target_tag": "enemy_plane" }
+      ]
+    },
+    {
+      "id": "op_gauntlet",
+      "name": "The Gauntlet",
+      "description": "Survive while eliminating incoming attackers.",
+      "objectives": [
+        { "type": "survive", "description": "Survive for 2 minutes", "duration": 120 },
+        { "type": "destroy", "description": "Destroy 4 enemy aircraft", "amount": 4, "target_tag": "enemy_plane" }
+      ]
+    },
+    {
+      "id": "op_apex",
+      "name": "Apex Predator",
+      "description": "Climb to the stratosphere and dominate the skies.",
+      "objectives": [
+        { "type": "reach_altitude", "description": "Reach 4000 meters altitude", "target": 4000 },
+        { "type": "destroy", "description": "Destroy 6 enemy aircraft", "amount": 6, "target_tag": "enemy_plane" },
+        { "type": "survive", "description": "Maintain control for 1.5 minutes", "duration": 90 }
+      ]
+    },
+
+
+    {
+      "id": "op_rapid_response",
+      "name": "Rapid Response",
+      "description": "Enemy scouts detected. Eliminate them before they regroup.",
+      "objectives": [
+        { "type": "destroy_in_time", "description": "Destroy 4 enemy aircraft within 60 seconds", "amount": 4, "time_limit": 60 }
+      ]
+    },
+    {
+      "id": "op_blitz_strike",
+      "name": "Blitz Strike",
+      "description": "Strike fast before reinforcements arrive.",
+      "objectives": [
+        { "type": "destroy_in_time", "description": "Destroy 6 enemy aircraft within 90 seconds", "amount": 6, "time_limit": 90 }
+      ]
+    },
+    {
+      "id": "op_surgical_window",
+      "name": "Surgical Window",
+      "description": "A brief opening. Make it count.",
+      "objectives": [
+        { "type": "destroy_in_time", "description": "Destroy 3 elite interceptors within 45 seconds", "amount": 3, "time_limit": 45 }
+      ]
+    },
+
+
+    {
+      "id": "op_firestorm",
+      "name": "Operation Firestorm",
+      "description": "Cripple the enemy airfield.",
+      "objectives": [
+        { "type": "destroy_base", "description": "Destroy the enemy base" },
+        { "type": "survive", "description": "Survive for 2 minutes after initiating the attack", "duration": 120 }
+      ]
+    },
+    {
+      "id": "op_runway_denial",
+      "name": "Runway Denial",
+      "description": "Destroy the base before their fighters can launch.",
+      "objectives": [
+        { "type": "destroy_base", "description": "Destroy the enemy base within 120 seconds", "time_limit": 120 }
+      ]
+    },
+    {
+      "id": "op_siege_breaker",
+      "name": "Siege Breaker",
+      "description": "Break their defenses and level their stronghold.",
+      "objectives": [
+        { "type": "destroy", "description": "Destroy 5 defending aircraft", "amount": 5, "target_tag": "enemy_plane" },
+        { "type": "destroy_base", "description": "Destroy the enemy base" }
+      ]
+    },
+    {
+      "id": "op_ashes_of_war",
+      "name": "Ashes of War",
+      "description": "Total annihilation.",
+      "objectives": [
+        { "type": "destroy", "description": "Destroy 8 enemy aircraft", "amount": 8, "target_tag": "enemy_plane" },
+        { "type": "destroy_base", "description": "Destroy the enemy base" },
+        { "type": "survive", "description": "Escape and survive for 2 minutes", "duration": 120 }
+      ]
+    },
+
+
+    {
+      "id": "op_strike_and_burn",
+      "name": "Strike and Burn",
+      "description": "Hit fast and leave nothing standing.",
+      "objectives": [
+        { "type": "destroy_in_time", "description": "Destroy 5 aircraft within 90 seconds", "amount": 5, "time_limit": 90 },
+        { "type": "destroy_base", "description": "Destroy the enemy base" }
+      ]
+    },
+    {
+      "id": "op_final_ember",
+      "name": "Final Ember",
+      "description": "The last fortress must fall.",
+      "objectives": [
+        { "type": "destroy_base", "description": "Destroy the central command base" },
+        { "type": "destroy_in_time", "description": "Destroy 6 escaping aircraft within 75 seconds", "amount": 6, "time_limit": 75 }
+      ]
+    }
+  ]
+}

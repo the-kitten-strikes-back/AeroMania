@@ -1,0 +1,44 @@
+{
+"missions": [
+{
+"id": "mm_apex_raid",
+"name": "Apex Raid",
+"description": "Climb high, survive waves, and eliminate top targets.",
+"objectives": [
+{ "type": "reach_altitude", "description": "Reach 4000 meters altitude", "target": 4000 },
+{ "type": "survive", "description": "Survive for 4 minutes", "duration": 240 },
+{ "type": "destroy", "description": "Destroy 6 enemy aircraft", "amount": 6, "target_tag": "enemy_plane" }
+]
+},
+{
+"id": "mm_stratos_blitz",
+"name": "Stratos Blitz",
+"description": "Engage multiple waves while holding high altitude.",
+"objectives": [
+{ "type": "reach_altitude", "description": "Reach 5000 meters altitude", "target": 5000 },
+{ "type": "survive", "description": "Survive for 5 minutes", "duration": 300 },
+{ "type": "destroy", "description": "Destroy 8 enemy aircraft", "amount": 8, "target_tag": "enemy_plane" }
+]
+},
+{
+"id": "mm_final_storm",
+"name": "Final Storm",
+"description": "The ultimate challenge: high altitude, enemy waves, and survival under pressure.",
+"objectives": [
+{ "type": "reach_altitude", "description": "Reach 6000 meters altitude", "target": 6000 },
+{ "type": "survive", "description": "Survive for 6 minutes", "duration": 360 },
+{ "type": "destroy", "description": "Destroy 10 enemy aircraft", "amount": 10, "target_tag": "enemy_plane" }
+]
+},
+{
+"id": "mm_sky_domination",
+"name": "Sky Domination",
+"description": "Control the skies by reaching altitude, surviving attacks, and destroying enemies.",
+"objectives": [
+{ "type": "reach_altitude", "description": "Reach 7000 meters altitude", "target": 7000 },
+{ "type": "survive", "description": "Survive for 7 minutes", "duration": 420 },
+{ "type": "destroy", "description": "Destroy 12 enemy aircraft", "amount": 12, "target_tag": "enemy_plane" }
+]
+}
+]
+}
