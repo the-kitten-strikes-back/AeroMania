@@ -1,0 +1,53 @@
+{
+  "completed_nodes": [
+    "q1_takeoff",
+    "q1_dogfight_intro"
+  ],
+  "node_stars": {
+    "q1_takeoff": 2,
+    "q1_dogfight_intro": 3
+  },
+  "challenge_stars": {},
+  "unlocked_aircraft": [
+    "f16",
+    "f167"
+  ],
+  "selected_aircraft": "f167",
+  "upgrades": {
+    "radar_quality": 1,
+    "missile_capacity": 2
+  },
+  "cosmetics": [
+    "rookie_marking"
+  ],
+  "currency": 300,
+  "inventory": {
+    "armor": [],
+    "planes": [
+      "f16",
+      "f167"
+    ],
+    "missiles": [
+      "basic",
+      "supersonic"
+    ],
+    "radars": [
+      "basic"
+    ],
+    "flares": 10
+  },
+  "equipped": {
+    "armor": null,
+    "plane": "f167",
+    "missile": "supersonic",
+    "radar": "basic"
+  },
+  "badges": [],
+  "stats": {
+    "total_kills": 0,
+    "total_deaths": 0,
+    "missions_completed": 2,
+    "time_flown": 142.36173129081726,
+    "best_survival_time": 90.01049041748047
+  }
+}

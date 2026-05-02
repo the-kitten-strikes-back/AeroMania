@@ -6,6 +6,7 @@ def update():
     
     global throttle, lift_force, speed, vertical_velocity, player_health, y, mission_complete, initial_enemy_count, game_paused, base_destroyed
     global mouse_pitch, mouse_yaw, completed_objectives, highest_altitude
+    global last_badge_check_time
 
     mx = mouse.velocity[0]
     my = mouse.velocity[1]
@@ -116,6 +117,15 @@ def update():
     ammo_display.text = f'Ammo: {gun_ammo}'
     flare_display.text = f'Flares: {flare_count}'
     enemy_count_display.text = f'Enemies: {len(enemy_planes)}'
+
+    if "last_badge_check_time" not in globals():
+        last_badge_check_time = 0
+    if time.time() - last_badge_check_time >= 0.5:
+        last_badge_check_time = time.time()
+        if 'check_badges' in globals() and 'show_badge_unlocked' in globals():
+            new_badges = check_badges()
+            if new_badges:
+                show_badge_unlocked(new_badges)
 
     # Stall Mechanics
     angle_of_attack = -(plane.rotation_x + 90)

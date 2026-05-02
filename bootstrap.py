@@ -174,28 +174,28 @@ aircraft_models = {
 
 SHOP_ITEMS = {
     "armor": [
-        {"id": "light_armor", "name": "Light Armor", "price": 500, "health_bonus": 50, "speed_penalty": 0.05, "description": "Basic protection with minimal speed loss"},
-        {"id": "medium_armor", "name": "Medium Armor", "price": 1000, "health_bonus": 100, "speed_penalty": 0.1, "description": "Balanced protection and mobility"},
-        {"id": "heavy_armor", "name": "Heavy Armor", "price": 1500, "health_bonus": 200, "speed_penalty": 0.15, "description": "Maximum protection at cost of speed"}
+        {"id": "light_armor", "name": "Light Armor", "price": 1000, "health_bonus": 50, "speed_penalty": 0.05, "description": "Basic protection with minimal speed loss"},
+        {"id": "medium_armor", "name": "Medium Armor", "price": 2000, "health_bonus": 100, "speed_penalty": 0.1, "description": "Balanced protection and mobility"},
+        {"id": "heavy_armor", "name": "Heavy Armor", "price": 3000, "health_bonus": 200, "speed_penalty": 0.15, "description": "Maximum protection at cost of speed"}
     ],
     "planes": [
-        {"id": "tinker", "name": "Tinker", "price": 2000, "speed": 80, "turn_rate": 2.0, "held_keys": 1, "size": 1.0, "description": "Agile fighter with good maneuverability"},
-        {"id": "ac130", "name": "AC-130", "price": 3000, "speed": 60, "turn_rate": 0.8, "held_keys": 3, "size": 2.0, "description": "Heavy gunship with devastating firepower"},
-        {"id": "xwing", "name": "X-Wing", "price": 2500, "speed": 90, "turn_rate": 1.5, "held_keys": 2, "size": 1.2, "description": "Starfighter with balanced stats"}
+        {"id": "tinker", "name": "Tinker", "price": 4000, "speed": 400, "turn_rate": 2.0, "held_keys": 1, "size": 1.0, "description": "Agile fighter with good maneuverability"},
+        {"id": "ac130", "name": "AC-130", "price": 6000, "speed": 300, "turn_rate": 0.8, "held_keys": 3, "size": 2.0, "description": "Heavy gunship with devastating firepower"},
+        {"id": "xwing", "name": "X-Wing", "price": 5000, "speed": 1000, "turn_rate": 1.5, "held_keys": 2, "size": 1.2, "description": "Starfighter with balanced stats"}
     ],
     "missiles": [
-        {"id": "mega", "name": "Mega Missile", "price": 300, "speed": 1.2, "turn_rate": 1.1, "count": 2, "damage": 150, "color": (255, 255, 0), "description": "Enhanced missile with better tracking"},
-        {"id": "military_grade", "name": "Military-Grade", "price": 500, "speed": 1.5, "turn_rate": 1.3, "count": 3, "damage": 200, "color": (255, 0, 0), "description": "Professional military missile"},
-        {"id": "supersonic", "name": "Supersonic", "price": 800, "speed": 2.0, "turn_rate": 1.5, "count": 4, "damage": 250, "color": (0, 255, 255), "description": "High-speed missile with excellent range"},
-        {"id": "hypersonic", "name": "Hypersonic", "price": 1200, "speed": 3.0, "turn_rate": 1.8, "count": 5, "damage": 300, "color": (255, 0, 255), "description": "Ultra-fast missile with perfect tracking"},
-        {"id": "nuclear", "name": "Nuclear", "price": 2000, "speed": 2.5, "turn_rate": 2.0, "count": 6, "damage": 500, "color": (255, 255, 255), "description": "Devastating nuclear missile"}
+        {"id": "mega", "name": "Mega Missile", "price": 600, "speed": 1.2, "turn_rate": 1.1, "count": 20, "damage": 150, "color": (255, 255, 0), "description": "Enhanced missile with better tracking"},
+        {"id": "military_grade", "name": "Military-Grade", "price": 1000, "speed": 1.5, "turn_rate": 1.3, "count": 30, "damage": 200, "color": (255, 0, 0), "description": "Professional military missile"},
+        {"id": "supersonic", "name": "Supersonic", "price": 1600, "speed": 2.0, "turn_rate": 1.5, "count": 40, "damage": 250, "color": (0, 255, 255), "description": "High-speed missile with excellent range"},
+        {"id": "hypersonic", "name": "Hypersonic", "price": 2400, "speed": 3.0, "turn_rate": 1.8, "count": 50, "damage": 300, "color": (255, 0, 255), "description": "Ultra-fast missile with perfect tracking"},
+        {"id": "nuclear", "name": "Nuclear", "price": 4000, "speed": 2.5, "turn_rate": 2.0, "count": 60, "damage": 500, "color": (255, 255, 255), "description": "Devastating nuclear missile"}
     ],
     "radars": [
-        {"id": "mega", "name": "Mega Radar", "price": 400, "range": 800, "description": "Extended detection range"},
-        {"id": "military_grade", "name": "Military-Grade", "price": 700, "range": 1200, "description": "Advanced military radar system"}
+        {"id": "mega", "name": "Mega Radar", "price": 800, "range": 800, "description": "Extended detection range"},
+        {"id": "military_grade", "name": "Military-Grade", "price": 1400, "range": 1200, "description": "Advanced military radar system"}
     ],
     "flares": [
-        {"id": "flare_pack", "name": "Flares (10)", "price": 100, "count": 10, "description": "Additional flare countermeasures"}
+        {"id": "flare_pack", "name": "Flares (10)", "price": 200, "count": 10, "description": "Additional flare countermeasures"}
     ]
 }
 
@@ -375,6 +375,9 @@ black_overlay = Entity(
     z=-1
 )
 
+intro_sequence = None
+intro_active = False
+
 
 # HUD text
 displayed = Text(
@@ -385,6 +388,24 @@ displayed = Text(
     origin=(-0.5, 0),
     scale=1.3,
     color=color.rgb(0, 255, 100)
+)
+badge_toast = Text(
+    "",
+    parent=camera.ui,
+    position=window.top + Vec2(0, -0.08),
+    origin=(0, 0),
+    scale=1.4,
+    color=color.rgb(255, 220, 90),
+    enabled=False
+)
+skip_hint = Text(
+    "Press Enter to skip",
+    parent=camera.ui,
+    position=window.bottom_left + Vec2(0.02, 0.04),
+    origin=(0, 0),
+    scale=0.9,
+    color=color.rgb(200, 255, 200),
+    enabled=False
 )
 
 
@@ -415,25 +436,62 @@ def add_text(t):
     displayed.text += t
 def clear_displayed():
     displayed.text = ""
+def show_badge_unlocked(new_badges):
+    if not new_badges:
+        return
+    badge_names = ", ".join([b["name"] for b in new_badges])
+    badge_toast.text = f"Badge Unlocked: {badge_names}"
+    badge_toast.color = color.rgba(255, 220, 90, 255)
+    badge_toast.enabled = True
+    badge_toast.animate_color(color.rgba(255, 220, 90, 0), duration=3)
+    invoke(lambda: setattr(badge_toast, "enabled", False), delay=3.1)
+def _end_intro():
+    global intro_active
+    intro_active = False
+    skip_hint.enabled = False
+def skip_intro():
+    global intro_sequence
+    if not intro_active:
+        return
+    if intro_sequence:
+        try:
+            intro_sequence.finish()
+        except Exception:
+            try:
+                intro_sequence.pause()
+            except Exception:
+                pass
+        intro_sequence = None
+    clear_displayed()
+    start_game()
+    black_overlay.animate_color(color.rgba(0, 0, 0, 0), duration=0.5)
+    _end_intro()
 def game_intro():
-    global game_paused
+    global game_paused, intro_sequence, intro_active
     game_paused = True
 
     briefing_text = _build_mission_briefing_text(mission)
     displayed.text = ""
 
-    Sequence(
+    intro_active = True
+    skip_hint.enabled = True
+
+    intro_sequence = Sequence(
         Wait(3),
         typewriter_text(briefing_text, base_delay=0.03),
         Wait(10),
         Func(start_game),  
         Wait(10),
         Func(clear_displayed),
-        Func(lambda: black_overlay.animate_color(color.rgba(0,0,0,0), duration=2))
+        Func(lambda: black_overlay.animate_color(color.rgba(0,0,0,0), duration=2)),
+        Func(_end_intro)
 
-    ).start()
+    )
+    intro_sequence.start()
 
-invoke(game_intro)
+start_game()
+clear_displayed()
+black_overlay.animate_color(color.rgba(0, 0, 0, 0), duration=0.5)
 mission_start_time = time.time()
 #Physics Constants
 g = 9.81  # Gravity (m/s²)
@@ -526,7 +584,9 @@ def update_progression_on_win():
     rewards = mission.get("rewards", {})
     
     # Currency rewards
-    currency_reward = rewards.get("currency", 50)  # Base reward of 50 AirBucks
+    base_reward = rewards.get("currency", 50)  # Base reward of 50 AirBucks
+    reward_scale = max(0.5, float(difficulty_scale)) if 'difficulty_scale' in globals() else 1.0
+    currency_reward = int(round(base_reward * reward_scale))
     progression["currency"] += currency_reward
     
     for aircraft_id in rewards.get("aircraft_unlocks", []):
@@ -574,4 +634,3 @@ for filename in os.listdir("models"):
         matched_files.append(os.path.join("/models", filename))
 x = len(matched_files)
 bgm = Audio(random.choice(matched_files), autoplay=True, loop=True)
-

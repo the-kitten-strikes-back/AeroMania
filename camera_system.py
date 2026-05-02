@@ -1,5 +1,7 @@
+MAX_CAMERA_DISTANCE = 25
+
+
 def runcamera(y=4):
-    """Advanced smooth chase camera with inertia & immersion effects"""
 
     global previous_speed
 
@@ -64,6 +66,12 @@ def runcamera(y=4):
             math.cos(shake_t * 1.3) * shake_intensity * 0.6,
             0
         )
+    # Clamp camera to a maximum distance from the plane.
+    camera_offset_vec = camera.position - plane.world_position
+    camera_distance = camera_offset_vec.length()
+    if camera_distance > MAX_CAMERA_DISTANCE:
+        clamped_pos = plane.world_position + camera_offset_vec.normalized() * MAX_CAMERA_DISTANCE
+        camera.position = lerp(camera.position, clamped_pos, time.dt * 1)
 
 
 

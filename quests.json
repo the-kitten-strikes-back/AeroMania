@@ -120,7 +120,7 @@
               {
                 "type": "destroy_in_time",
                 "amount": 3,
-                "time_limit": 150,
+                "time_limit": 338,
                 "description": "Destroy 3 enemies within 150 seconds"
               }
             ],
@@ -178,7 +178,7 @@
               {
                 "type": "destroy_in_time",
                 "amount": 4,
-                "time_limit": 180,
+                "time_limit": 405,
                 "description": "Bonus: complete under 180 seconds"
               }
             ],
@@ -669,7 +669,7 @@
               {
                 "type": "destroy_in_time",
                 "amount": 6,
-                "time_limit": 240,
+                "time_limit": 540,
                 "description": "Bonus: clear elite flight quickly"
               }
             ],
@@ -811,7 +811,7 @@
           {
             "type": "destroy_in_time",
             "amount": 5,
-            "time_limit": 180,
+            "time_limit": 405,
             "description": "Destroy 5 enemies in 180 seconds"
           }
         ],

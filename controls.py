@@ -11,6 +11,9 @@ def input(key):
         if key == 'escape':
             application.quit()
         return
+    if key == 'enter' and 'intro_active' in globals() and intro_active:
+        skip_intro()
+        return
     if key == 'f1':
         editor_mode = not editor_mode
 
@@ -106,9 +109,6 @@ def input(key):
                     enemy.take_damage(5)
                     break
     
-    # Spawn enemies
-    if key == 'n':
-        spawn_enemies(3)
     
     # Toggle radar
     if key == 'h':

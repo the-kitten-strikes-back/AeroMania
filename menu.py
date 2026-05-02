@@ -46,28 +46,28 @@ CONTROL_LINES = [
 
 SHOP_ITEMS = {
     "armor": [
-        {"id": "light_armor", "name": "Light Armor", "price": 500, "health_bonus": 50, "speed_penalty": 0.05, "description": "Basic protection with minimal speed loss"},
-        {"id": "medium_armor", "name": "Medium Armor", "price": 1000, "health_bonus": 100, "speed_penalty": 0.1, "description": "Balanced protection and mobility"},
-        {"id": "heavy_armor", "name": "Heavy Armor", "price": 1500, "health_bonus": 200, "speed_penalty": 0.15, "description": "Maximum protection at cost of speed"}
+        {"id": "light_armor", "name": "Light Armor", "price": 1000, "health_bonus": 50, "speed_penalty": 0.05, "description": "Basic protection with minimal speed loss"},
+        {"id": "medium_armor", "name": "Medium Armor", "price": 2000, "health_bonus": 100, "speed_penalty": 0.1, "description": "Balanced protection and mobility"},
+        {"id": "heavy_armor", "name": "Heavy Armor", "price": 3000, "health_bonus": 200, "speed_penalty": 0.15, "description": "Maximum protection at cost of speed"}
     ],
     "planes": [
-        {"id": "tinker", "name": "Tinker", "price": 2000, "speed": 80, "turn_rate": 2.0, "held_keys": 1, "size": 1.0, "description": "Agile fighter with good maneuverability"},
-        {"id": "ac130", "name": "AC-130", "price": 3000, "speed": 60, "turn_rate": 0.8, "held_keys": 3, "size": 2.0, "description": "Heavy gunship with devastating firepower"},
-        {"id": "xwing", "name": "X-Wing", "price": 2500, "speed": 90, "turn_rate": 1.5, "held_keys": 2, "size": 1.2, "description": "Starfighter with balanced stats"}
+        {"id": "tinker", "name": "Tinker", "price": 4000, "speed": 80, "turn_rate": 2.0, "held_keys": 1, "size": 1.0, "description": "Agile fighter with good maneuverability"},
+        {"id": "ac130", "name": "AC-130", "price": 6000, "speed": 60, "turn_rate": 0.8, "held_keys": 3, "size": 2.0, "description": "Heavy gunship with devastating firepower"},
+        {"id": "xwing", "name": "X-Wing", "price": 5000, "speed": 90, "turn_rate": 1.5, "held_keys": 2, "size": 1.2, "description": "Starfighter with balanced stats"}
     ],
     "missiles": [
-        {"id": "mega", "name": "Mega Missile", "price": 300, "speed": 1.2, "turn_rate": 1.1, "count": 2, "damage": 150, "color": (255, 255, 0), "description": "Enhanced missile with better tracking"},
-        {"id": "military_grade", "name": "Military-Grade", "price": 500, "speed": 1.5, "turn_rate": 1.3, "count": 3, "damage": 200, "color": (255, 0, 0), "description": "Professional military missile"},
-        {"id": "supersonic", "name": "Supersonic", "price": 800, "speed": 2.0, "turn_rate": 1.5, "count": 4, "damage": 250, "color": (0, 255, 255), "description": "High-speed missile with excellent range"},
-        {"id": "hypersonic", "name": "Hypersonic", "price": 1200, "speed": 3.0, "turn_rate": 1.8, "count": 5, "damage": 300, "color": (255, 0, 255), "description": "Ultra-fast missile with perfect tracking"},
-        {"id": "nuclear", "name": "Nuclear", "price": 2000, "speed": 2.5, "turn_rate": 2.0, "count": 6, "damage": 500, "color": (255, 255, 255), "description": "Devastating nuclear missile"}
+        {"id": "mega", "name": "Mega Missile", "price": 600, "speed": 1.2, "turn_rate": 1.1, "count": 2, "damage": 150, "color": (255, 255, 0), "description": "Enhanced missile with better tracking"},
+        {"id": "military_grade", "name": "Military-Grade", "price": 1000, "speed": 1.5, "turn_rate": 1.3, "count": 3, "damage": 200, "color": (255, 0, 0), "description": "Professional military missile"},
+        {"id": "supersonic", "name": "Supersonic", "price": 1600, "speed": 2.0, "turn_rate": 1.5, "count": 4, "damage": 250, "color": (0, 255, 255), "description": "High-speed missile with excellent range"},
+        {"id": "hypersonic", "name": "Hypersonic", "price": 2400, "speed": 3.0, "turn_rate": 1.8, "count": 5, "damage": 300, "color": (255, 0, 255), "description": "Ultra-fast missile with perfect tracking"},
+        {"id": "nuclear", "name": "Nuclear", "price": 4000, "speed": 2.5, "turn_rate": 2.0, "count": 6, "damage": 500, "color": (255, 255, 255), "description": "Devastating nuclear missile"}
     ],
     "radars": [
-        {"id": "mega", "name": "Mega Radar", "price": 400, "range": 800, "description": "Extended detection range"},
-        {"id": "military_grade", "name": "Military-Grade", "price": 700, "range": 1200, "description": "Advanced military radar system"}
+        {"id": "mega", "name": "Mega Radar", "price": 800, "range": 800, "description": "Extended detection range"},
+        {"id": "military_grade", "name": "Military-Grade", "price": 1400, "range": 1200, "description": "Advanced military radar system"}
     ],
     "flares": [
-        {"id": "flare_pack", "name": "Flares (10)", "price": 100, "count": 10, "description": "Additional flare countermeasures"}
+        {"id": "flare_pack", "name": "Flares (10)", "price": 200, "count": 10, "description": "Additional flare countermeasures"}
     ]
 }
 
@@ -493,7 +493,7 @@ def run_menu():
         audio_ready = False
         music_loaded = False
 
-    pygame.display.set_caption("Flyer 101 — Mission Menu")
+    pygame.display.set_caption("AeroMania — Mission Menu")
     screen = pygame.display.set_mode((W, H))
     clock = pygame.time.Clock()
 
@@ -569,19 +569,17 @@ def run_menu():
         draw_rect_alpha(screen, THEME["accent"], pygame.Rect(header.x + 10, header.y, header.width - 20, 2), int(120 * pulse), 1)
 
         # Title
-        title_s = title_font.render("FLYER 101", True, THEME["text"])
+        title_s = title_font.render("AeroMania", True, THEME["text"])
         screen.blit(title_s, (42, 22))
         # Glow pass
         glow_c = (int(THEME["accent"][0] * pulse * 0.6),
                   int(THEME["accent"][1] * pulse * 0.6),
                   int(THEME["accent"][2] * pulse * 0.6))
-        glow_s = title_font.render("FLYER 101", True, glow_c)
+        glow_s = title_font.render("AeroMania", True, glow_c)
         s_tmp = pygame.Surface(glow_s.get_size(), pygame.SRCALPHA)
         s_tmp.blit(glow_s, (0, 0))
         screen.blit(s_tmp, (44, 24))
 
-        subtitle = sub_font.render("TACTICAL MISSION COMMAND", True, THEME["text_muted"])
-        screen.blit(subtitle, (44, 68))
 
         # Currency badge
         cur_str = f"◈  {progression.get('currency', 0):,}  AIRBUCKS"
@@ -759,7 +757,12 @@ def run_menu():
                         selected_challenge_id = ch.get("id")
                         selected_node_id = None
                         selected_name = ch.get("name", "")
-                        selected_info = ch.get("description", "")
+                        objective_text = "\n".join(
+                            obj.get("description", "") for obj in ch.get("mission", {}).get("objectives", [])
+                            if obj.get("description")
+                        )
+                        selected_info = objective_text
+
                     list_y += 38
                     content_h += 38
 
@@ -903,6 +906,12 @@ def run_menu():
             categories = ["plane", "armor", "missile", "radar"]
             cat_names  = ["AIRCRAFT", "ARMOR", "MISSILE", "RADAR"]
             cat_icons  = ["✈", "🛡", "🚀", "📡"]
+            inventory_keys = {
+                "plane": "planes",
+                "armor": "armor",
+                "missile": "missiles",
+                "radar": "radars",
+            }
 
             col_w = (lp.width - 40) // len(categories)
             for ci, (cat, name, icon) in enumerate(zip(categories, cat_names, cat_icons)):
@@ -918,7 +927,8 @@ def run_menu():
                 cy += 48
 
                 equip_val = equipped.get(cat)
-                available = (inventory.get("planes", []) if cat == "plane" else inventory.get(cat, []))
+                inv_key = inventory_keys.get(cat, cat)
+                available = inventory.get(inv_key, [])
                 if not isinstance(available, list):
                     available = []
 
@@ -1172,7 +1182,7 @@ def run_menu():
         elif audio_ready and not music_loaded:
             screen.blit(tiny_font.render("♪ Menu music missing (models/menu_music.mp3)", True, THEME["text_muted"]), (28, footer_y))
 
-        version_s = tiny_font.render("FLYER 101  v1.0  //  MISSION COMMAND", True, THEME["text_muted"])
+        version_s = tiny_font.render("AeroMania  v1.0  //  MISSION COMMAND", True, THEME["text_muted"])
         screen.blit(version_s, (W - version_s.get_width() - 28, footer_y))
 
         pygame.display.flip()

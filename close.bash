@@ -1,0 +1,1 @@
+pkill -f "ursina_menu.py|master_of_puppets.py|python.*run_menu" || true && echo 'processes terminated'

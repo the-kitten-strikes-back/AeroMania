@@ -93,6 +93,11 @@ class Missile(Entity):
             missiles.remove(self)
         destroy(self)
 
+ENEMY_SPEED_MIN = 140
+ENEMY_SPEED_MAX = 380
+ENEMY_SPEED_MATCH = 0.85
+
+
 class EnemyPlane(Entity):
     def __init__(self, position, **kwargs):
         super().__init__(
@@ -105,7 +110,11 @@ class EnemyPlane(Entity):
         )
         self.health = 50
         ai_scale = difficulty_scale if 'difficulty_scale' in globals() else 1.0
-        self.speed = random.uniform(100, 285) * (0.85 + ai_scale * 0.25)
+        if 'speed' in globals():
+            base_speed = speed * ENEMY_SPEED_MATCH
+        else:
+            base_speed = random.uniform(160, 260)
+        self.speed = min(ENEMY_SPEED_MAX, max(ENEMY_SPEED_MIN, base_speed))
         self.target = None
         self.state = 'patrol'  # patrol, engage, circle, evade
         self.last_shot_time = 0
@@ -123,6 +132,11 @@ class EnemyPlane(Entity):
     def update(self):
         global plane
         self.ai_timer += time.dt
+
+        if 'speed' in globals():
+            target_speed = speed * ENEMY_SPEED_MATCH
+            target_speed = min(ENEMY_SPEED_MAX, max(ENEMY_SPEED_MIN, target_speed))
+            self.speed = lerp(self.speed, target_speed, time.dt * 0.4)
         
         # Check distance to player
         dist_to_player = distance(self.position, plane.position)
