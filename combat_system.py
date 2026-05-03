@@ -1,6 +1,11 @@
 def spawn_enemies(count=5):
     """Spawn enemy planes around the map at tactical distances"""
-    for i in range(count):
+    ppo_count = int(count * PPO_ENEMY_SPAWN_RATIO)
+    algo_count = count - ppo_count
+    enemy_classes = [PPOEnemyPlane] * ppo_count + [EnemyPlane] * algo_count
+    random.shuffle(enemy_classes)
+
+    for enemy_class in enemy_classes:
         # Spawn at better engagement distances (2000-4000m away)
         angle = random.uniform(0, 360)
         distance_away = random.uniform(2000, 4000)
@@ -10,7 +15,7 @@ def spawn_enemies(count=5):
             random.uniform(3000, 5000),
             math.cos(math.radians(angle)) * distance_away
         )
-        enemy = EnemyPlane(position=spawn_pos)
+        enemy = enemy_class(position=spawn_pos)
         enemy_planes.append(enemy)
         
         # Add marker to minimap

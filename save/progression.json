@@ -15,12 +15,12 @@
   "selected_aircraft": "f167",
   "upgrades": {
     "radar_quality": 1,
-    "missile_capacity": 2
+    "missile_capacity": 4
   },
   "cosmetics": [
     "rookie_marking"
   ],
-  "currency": 300,
+  "currency": 350,
   "inventory": {
     "armor": [],
     "planes": [
@@ -46,8 +46,8 @@
   "stats": {
     "total_kills": 0,
     "total_deaths": 0,
-    "missions_completed": 2,
-    "time_flown": 142.36173129081726,
-    "best_survival_time": 90.01049041748047
+    "missions_completed": 3,
+    "time_flown": 239.0092339515686,
+    "best_survival_time": 96.64750266075134
   }
 }

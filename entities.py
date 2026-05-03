@@ -1,3 +1,25 @@
+import math
+import random
+import time
+
+import numpy as np
+from stable_baselines3 import PPO
+from ursina import *
+
+
+PPO_MODEL_PATH = "models/aeromania_rl_model_final.zip"
+PPO_ENEMY_COLOR = color.rgb(180, 80, 255)
+PPO_ENEMY_SPAWN_RATIO = 0.5
+_ppo_enemy_model = None
+
+
+def load_ppo_enemy_model():
+    global _ppo_enemy_model
+    if _ppo_enemy_model is None:
+        _ppo_enemy_model = PPO.load(PPO_MODEL_PATH)
+    return _ppo_enemy_model
+
+
 class Flare(Entity):
     def __init__(self, position, **kwargs):
         super().__init__(
@@ -351,4 +373,69 @@ class EnemyPlane(Entity):
         if self in enemy_planes:
             enemy_planes.remove(self)
         destroy(self)
+
+
+class PPOEnemyPlane(EnemyPlane):
+    def __init__(self, position, **kwargs):
+        super().__init__(position=position, **kwargs)
+        self.color = PPO_ENEMY_COLOR
+        self.shot_cooldown = random.uniform(20, 35)
+
+    def _get_alignment(self):
+        to_player = plane.position - self.position
+        if to_player.length() == 0:
+            return 1.0
+        return self.forward.normalized().dot(to_player.normalized())
+
+    def _get_observation(self):
+        rel_pos = plane.position - self.position
+        return np.array([
+            rel_pos.x,
+            rel_pos.y,
+            rel_pos.z,
+            self.rotation_x,
+            self.rotation_y,
+            self.speed,
+            distance(self.position, plane.position),
+            float(self._get_alignment()),
+        ], dtype=np.float32)
+
+    def update(self):
+        self.ai_timer += time.dt
+
+        if 'speed' in globals():
+            target_speed = speed * ENEMY_SPEED_MATCH
+            target_speed = min(ENEMY_SPEED_MAX, max(ENEMY_SPEED_MIN, target_speed))
+            self.speed = lerp(self.speed, target_speed, time.dt * 0.4)
+
+        model = load_ppo_enemy_model()
+        action, _states = model.predict(self._get_observation(), deterministic=True)
+        pitch_input = float(action[0])
+        yaw_input = float(action[1])
+        fire_input = float(action[3])
+
+        self.rotation_x = clamp(self.rotation_x - pitch_input * 55 * time.dt, -45, 45)
+        self.rotation_y += yaw_input * 90 * time.dt
+
+        forward_vector = Vec3(
+            math.sin(math.radians(self.rotation_y)),
+            0,
+            math.cos(math.radians(self.rotation_y))
+        ).normalized()
+        self.position += forward_vector * self.speed * time.dt
+
+        vertical_step = clamp(-pitch_input * self.speed * 0.18, -120, 120) * time.dt
+        altitude_correction = clamp((plane.y - self.y) * 0.015, -2.5, 2.5)
+        self.y += vertical_step + altitude_correction
+
+        dist_to_player = distance(self.position, plane.position)
+        if fire_input > 0.6 and time.time() - self.last_shot_time > self.shot_cooldown:
+            if 100 < dist_to_player < 1800 and self._get_alignment() > 0.65:
+                self.fire_missile()
+                self.last_shot_time = time.time()
+
+        if self.y < 100:
+            self.y = 100
+        elif self.y > 3000:
+            self.y = 3000
 
