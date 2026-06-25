@@ -583,10 +583,11 @@ def update_progression_on_win():
 
     rewards = mission.get("rewards", {})
     
-    # Currency rewards
-    base_reward = rewards.get("currency", 50)  # Base reward of 50 AirBucks
-    reward_scale = max(0.5, float(difficulty_scale)) if 'difficulty_scale' in globals() else 1.0
-    currency_reward = int(round(base_reward * reward_scale))
+    # Currency rewards scale with mission difficulty, with a higher floor for easier missions.
+    reward_scale = max(1.0, float(difficulty_scale)) if 'difficulty_scale' in globals() else 1.0
+    minimum_reward = int(round(min(200, max(100, 100 + ((reward_scale - 1.0) * 200)))))
+    base_reward = rewards.get("currency", minimum_reward)
+    currency_reward = max(minimum_reward, int(round(base_reward * reward_scale)))
     progression["currency"] += currency_reward
     
     for aircraft_id in rewards.get("aircraft_unlocks", []):
